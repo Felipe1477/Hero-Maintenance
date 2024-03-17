@@ -3,6 +3,7 @@ import { Hero } from '../interfaces/hero';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../services/hero.service';
 import { Location } from '@angular/common';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-hero-detail',
@@ -11,8 +12,10 @@ import { Location } from '@angular/common';
 })
 export class HeroDetailComponent {
   hero!: Hero;
-  heroId!: number
-  public idConfirm!: number;
+  heroId = 0;
+  heroName = 'new';
+  public idConfirm = false;
+  subscription!: Subscription;
 
   constructor(
     private route: ActivatedRoute,
@@ -26,25 +29,27 @@ export class HeroDetailComponent {
 
   getHero(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.heroService.getHero(id)
+    this.subscription = this.heroService.getHero(id)
       .subscribe(hero => this.hero = hero);
     this.heroId = id;
+    this.heroName = this.hero.name;
     
     if (this.heroId == 0){
-      this.hero = {id : 0,name : 'new'};
+      this.hero = {id : this.heroId,name : this.heroName};
     }
   }
 
   save(hero: Hero): void {
     if (this.heroId == 0){
       this.heroService.createHero(hero);
+    } else {
+      this.hero.name = this.heroName;
     }
     this.location.back();
   }
 
-  delete(id: number): void {
-    this.idConfirm = id;
-    this.location.back();
+  delete(): void {
+    this.idConfirm = !this.idConfirm;
   }
 
   deleteconfirm(id: number): void {
@@ -52,20 +57,23 @@ export class HeroDetailComponent {
       response => {
         if (!response){
           alert('Server Error');
-
         }
       }      
     );
     this.location.back();
+    this.idConfirm = !this.idConfirm;
   }
 
   deletecancel(): void {
-    this.location.back();
+    this.idConfirm = !this.idConfirm;
   }
 
   goBack(): void {
     this.location.back();
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe()
+  }
 
 }

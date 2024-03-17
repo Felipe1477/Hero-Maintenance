@@ -11,6 +11,7 @@ import { HeroesComponent } from '../heroes/heroes.component';
 export class HeroFilterComponent {
   name = new FormControl('');
   @ViewChild(HeroesComponent) childHero!: HeroesComponent;
+  namefilter: string = '';
     
   constructor(private router: Router) { }
 
@@ -20,11 +21,23 @@ export class HeroFilterComponent {
     this.router.navigate(['detail/0']); 
   }
 
-  EditHero(){
-    let selectedHeroId = this.childHero.selectedHero.id;
-    this.router.navigate(['detail/'+selectedHeroId]); 
+  filterHero(){
+    this.childHero.getFilteredHeroes(this.namefilter);
   }
 
+  cleanFilter(){
+    this.childHero.getHeroes();
+  }
 
+  EditHero(){
+    if(this.childHero.selectedHero){
+    let selectedHeroId = this.childHero.selectedHero.id;
+    this.router.navigate(['detail/'+selectedHeroId]); 
+    } else {
+      alert("No Hero Selected");
+    }
+  }
+
+  
 
 }

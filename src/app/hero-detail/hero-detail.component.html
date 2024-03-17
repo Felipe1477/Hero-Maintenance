@@ -4,14 +4,17 @@
 
 <div>
     <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="hero.name" placeholder="Hero name" />
+    <input id="hero-name" [(ngModel)]="heroName" placeholder="Hero name" />
 </div>
 <div>
     <button type="button" (click)="save(hero)">Save</button>
-    <button *ngIf="hero.id != 0" type="button" (click)="delete(hero.id)">Delete</button>
+    <button *ngIf="hero.id != 0" type="button" (click)="delete()">Delete</button>
     <button type="button" (click)="goBack()">go back</button>
 </div>
+<br>
+
 <div class="secure" *ngIf="idConfirm">
-    <button type="button" (click)="deleteconfirm(hero.id)">Delete</button>
-    <button type="button" (click)="deletecancel()">Delete</button>
+    <h3>Please confirm Delete</h3>
+    <button type="button" (click)="deleteconfirm(hero.id)">Confirm</button>
+    <button type="button" (click)="deletecancel()">Cancel</button>
 </div>

@@ -7,28 +7,37 @@ import { Observable, of } from 'rxjs';
   providedIn: 'root'
 })
 export class HeroService {
+  Heroesdata = HEROES;
+  newHeroes! : Hero[];
 
   constructor() { }
 
   getHeroes(): Observable<Hero[]> {
-    return of(HEROES);
+    return of(this.Heroesdata);
   }
 
   getHero(id: number): Observable<Hero> {
-    const hero = HEROES.find(h => h.id === id)!;
+    const hero = this.Heroesdata.find(h => h.id === id)!;
     return of(hero);
   }
 
+  getFilteredHeroes(filter: string): Observable<Hero[]> {
+    return of(this.Heroesdata.filter((hero) => hero.name.toLowerCase().includes(filter.toLowerCase())));
+  }
+  
+
   createHero(hero: Hero): Observable<String>  {
     let params = JSON.stringify(hero);
-    let lastIndex = HEROES[HEROES.length-1].id;
+    let lastIndex = this.Heroesdata[this.Heroesdata.length-1].id;
     hero.id = lastIndex + 1
-    HEROES.push(hero);
+    this.Heroesdata.push(hero);
     return of('Hero Added');
   }
 
-  deleteHero(id: number): Observable<String>  {
-    return of('Hero Delete');
+  deleteHero(id: number): Observable<String> {
+    this.newHeroes = this.Heroesdata.filter((hero) => hero.id != id)
+    this.Heroesdata = this.newHeroes;
+    return of('Hero Deleted');
   }
 
 }

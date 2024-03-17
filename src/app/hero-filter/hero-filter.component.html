@@ -1,6 +1,8 @@
 <BR>
 <label for="name">Name: </label>
-<input id="name" type="text">
+<input id="name" type="text" [(ngModel)]="namefilter">
+<button type="button" (click)="filterHero()">Filter </button>
+<button type="button" (click)="cleanFilter()">Clean Filter </button>
 <br>
 <app-heroes></app-heroes>
 <div>

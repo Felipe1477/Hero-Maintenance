@@ -6,4 +6,11 @@
     </button>
   </li>
 </ul>
-<h3 *ngIf="selectedHero">Current Hero Selected: {{selectedHero.name}} </h3>
+<h3 *ngIf="showSelected">Current Hero Selected: {{selectedHero.name}} </h3>
+<button *ngIf="showDelete" type="button" (click)="delete()">Delete</button>
+
+<div class="secure" *ngIf="confirmDelete">
+  <h3>Please confirm Delete</h3>
+  <button type="button" (click)="deleteconfirm()">Confirm</button>
+  <button type="button" (click)="deletecancel()">Cancel</button>
+</div>
