@@ -2,7 +2,7 @@
     <mat-progress-spinner class="spinner-margin" mode="indeterminate" value="50"></mat-progress-spinner>
 </div>
 
-<div *ngIf="!spinnerShow">
+<div class="option-buttons" *ngIf="!spinnerShow">
     <BR>
     <mat-label for="name">Name: </mat-label>
     <input id="name" type="text" [(ngModel)]="namefilter">

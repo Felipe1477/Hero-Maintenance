@@ -18,7 +18,7 @@ export class HeroFilterComponent {
 
   ngOnInit() {
     this.spinnerShow = true;
-    setTimeout(() => this.spinnerShow = false, 3000);
+    setTimeout(() => this.spinnerShow = false, 1500);
    }
 
   createNewHero() {

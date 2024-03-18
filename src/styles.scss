@@ -20,7 +20,7 @@ $hero-app-w2m-warn: mat.define-palette(mat.$teal-palette);
 
 // Create the theme object. A theme consists of configurations for individual
 // theming systems such as "color" or "typography".
-$hero-app-w2m-theme: mat.define-light-theme((
+$hero-app-w2m-theme: mat.define-dark-theme((
   color: (
     primary: $hero-app-w2m-primary,
     accent: $hero-app-w2m-accent,

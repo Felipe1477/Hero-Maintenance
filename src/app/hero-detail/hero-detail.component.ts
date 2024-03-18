@@ -32,7 +32,7 @@ export class HeroDetailComponent {
   ngOnInit(): void {
     this.spinnerShow = true;
     this.getHero();
-    setTimeout(() => this.spinnerShow = false, 5000);
+    setTimeout(() => this.spinnerShow = false, 3000);
   }
 
   getHero(): void {

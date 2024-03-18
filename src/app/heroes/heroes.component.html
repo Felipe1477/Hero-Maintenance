@@ -7,8 +7,9 @@
   </li>
 </ul>
 <h3 *ngIf="showSelected">Current Hero Selected: {{selectedHero.name}} </h3>
+<div class="option-buttons">
 <button *ngIf="showDelete" mat-raised-button color="warn" type="button" (click)="delete()">Delete</button>
-
+</div>
 <div class="secure" *ngIf="confirmDelete">
   <h3>Please confirm Delete</h3>
   <button mat-raised-button color="primary" type="button" (click)="deleteconfirm()">Confirm</button>
