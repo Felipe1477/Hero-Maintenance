@@ -12,32 +12,36 @@ export class HeroFilterComponent {
   name = new FormControl('');
   @ViewChild(HeroesComponent) childHero!: HeroesComponent;
   namefilter: string = '';
-    
+  spinnerShow = false;
+
   constructor(private router: Router) { }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.spinnerShow = true;
+    setTimeout(() => this.spinnerShow = false, 3000);
+   }
 
-  createNewHero(){
-    this.router.navigate(['detail/0']); 
+  createNewHero() {
+    this.router.navigate(['detail/0']);
   }
 
-  filterHero(){
+  filterHero() {
     this.childHero.getFilteredHeroes(this.namefilter);
   }
 
-  cleanFilter(){
+  cleanFilter() {
     this.childHero.getHeroes();
   }
 
-  EditHero(){
-    if(this.childHero.selectedHero){
-    let selectedHeroId = this.childHero.selectedHero.id;
-    this.router.navigate(['detail/'+selectedHeroId]); 
+  EditHero() {
+    if (this.childHero.selectedHero) {
+      let selectedHeroId = this.childHero.selectedHero.id;
+      this.router.navigate(['detail/' + selectedHeroId]);
     } else {
       alert("No Hero Selected");
     }
   }
 
-  
+
 
 }

@@ -1,20 +1,29 @@
-<h2>{{hero.name | uppercase}} Details</h2>
-
-<div><span>id: </span>{{hero.id}}</div>
-
-<div>
-    <label for="hero-name">Hero name: </label>
-    <input id="hero-name" [(ngModel)]="heroName" placeholder="Hero name" />
+<div *ngIf="spinnerShow">
+    <mat-progress-spinner class="spinner-margin" mode="indeterminate" value="50"></mat-progress-spinner>
 </div>
-<div>
-    <button type="button" (click)="save(hero)">Save</button>
-    <button *ngIf="hero.id != 0" type="button" (click)="delete()">Delete</button>
-    <button type="button" (click)="goBack()">go back</button>
-</div>
-<br>
 
-<div class="secure" *ngIf="idConfirm">
-    <h3>Please confirm Delete</h3>
-    <button type="button" (click)="deleteconfirm(hero.id)">Confirm</button>
-    <button type="button" (click)="deletecancel()">Cancel</button>
+<div *ngIf="!spinnerShow">
+    <h2>{{hero.name | uppercase}} Details</h2>
+
+    <div><span>id: </span>{{hero.id}}</div>
+
+    <div>
+        <label for="hero-name">Hero name: </label>
+        <input matInput type="text" id="hero-name" [(ngModel)]="heroName" placeholder="Hero name" />
+        <label for="hero-age">Hero age: </label>
+        <input matInput type="number" [(ngModel)]="heroAge">
+    </div>
+    <div>
+        <button mat-raised-button color="primary" type="button" (click)="save(hero)">Save</button>
+        <button *ngIf="hero.id != 0" mat-raised-button color="accent" type="button" (click)="delete()">Delete</button>
+        <button mat-raised-button color="warn" type="button" (click)="goBack()">go back</button>
+    </div>
+    <br>
+
+    <div class="secure" *ngIf="idConfirm">
+        <h3>Please confirm Delete</h3>
+        <button mat-raised-button color="primary" type="button" (click)="deleteconfirm(hero.id)">Confirm</button>
+        <button mat-raised-button color="accent" type="button" (click)="deletecancel()">Cancel</button>
+    </div>
+
 </div>

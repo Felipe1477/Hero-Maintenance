@@ -27,7 +27,6 @@ export class HeroService {
   
 
   createHero(hero: Hero): Observable<String>  {
-    let params = JSON.stringify(hero);
     let lastIndex = this.Heroesdata[this.Heroesdata.length-1].id;
     hero.id = lastIndex + 1
     this.Heroesdata.push(hero);

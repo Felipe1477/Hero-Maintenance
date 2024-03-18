@@ -1,12 +1,18 @@
-<BR>
-<label for="name">Name: </label>
-<input id="name" type="text" [(ngModel)]="namefilter">
-<button type="button" (click)="filterHero()">Filter </button>
-<button type="button" (click)="cleanFilter()">Clean Filter </button>
-<br>
-<app-heroes></app-heroes>
-<div>
-<button type="button" (click)="createNewHero()">Create Hero </button>
-<button type="button" (click)="EditHero()">Edit Hero </button>
+<div *ngIf="spinnerShow">
+    <mat-progress-spinner class="spinner-margin" mode="indeterminate" value="50"></mat-progress-spinner>
+</div>
 
+<div *ngIf="!spinnerShow">
+    <BR>
+    <mat-label for="name">Name: </mat-label>
+    <input id="name" type="text" [(ngModel)]="namefilter">
+    <button mat-raised-button color="primary" type="button" (click)="filterHero()">Filter </button>
+    <button mat-raised-button color="accent" type="button" (click)="cleanFilter()">Clean Filter </button>
+    <br>
+    <app-heroes></app-heroes>
+    <br>
+    <div>
+        <button mat-raised-button color="primary" type="button" (click)="createNewHero()">Create Hero </button>
+        <button mat-raised-button color="accent" type="button" (click)="EditHero()">Edit Hero </button>
+    </div>
 </div>

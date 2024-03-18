@@ -9,6 +9,12 @@ import { HeroDetailComponent } from './hero-detail/hero-detail.component';
 import { HeroFilterComponent } from './hero-filter/hero-filter.component';
 import { FormsModule } from '@angular/forms';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatButtonModule} from '@angular/material/button';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
 
 
 
@@ -28,7 +34,13 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     NoopAnimationsModule,
     FormsModule,
-    NgFor
+    NgFor,
+    MatProgressSpinnerModule,
+    BrowserAnimationsModule,
+    MatDividerModule,
+    MatButtonModule,
+    MatInputModule,
+    MatFormFieldModule
   ],
   providers: [],
   bootstrap: [AppComponent]

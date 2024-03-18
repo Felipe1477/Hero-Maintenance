@@ -17,7 +17,7 @@ export class HeroesComponent {
   public showDelete = false;
   public showSelected = false;
 
-  constructor(private heroService: HeroService) { 
+  constructor(private heroService: HeroService) {
   }
 
   ngOnInit() {
@@ -33,34 +33,35 @@ export class HeroesComponent {
 
   getHeroes(): void {
     this.subscription = this.heroService.getHeroes()
-        .subscribe(heroes => {
-          this.heroes = heroes;
-          this.displayheroes = this.heroes;
-        });
+      .subscribe(heroes => {
+        this.heroes = heroes;
+        this.displayheroes = this.heroes;
+      });
   }
 
   getFilteredHeroes(filter: string): void {
     this.subscription = this.heroService.getFilteredHeroes(filter)
-        .subscribe(heroes => {
-          this.heroes = heroes;
-          this.displayheroes = this.heroes;
-        });
+      .subscribe(heroes => {
+        this.heroes = heroes;
+        this.displayheroes = this.heroes;
+      });
   }
 
   delete(): void {
     this.confirmDelete = !this.confirmDelete;
-    
+
   }
 
   deleteconfirm(): void {
     this.heroService.deleteHero(this.selectedHero.id).subscribe(
       response => {
-        if (!response){
+        if (!response) {
           alert('Server Error');
         } else {
+          alert(response); //Queria crear Material Dialog pero no logré solucionar llamar a MAT_DIALOG_DATA
           this.getHeroes();
         }
-      }      
+      }
     );
     this.confirmDelete = !this.confirmDelete;
     this.showSelected = false;
